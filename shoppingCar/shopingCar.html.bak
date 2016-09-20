@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <base/>
+	<title>购物车</title>
+	<script src="angular.js"></script>
+  </head>
+  <body ng-controller="CartController">
+  <h1>订单</h1>
+  <div ng-repeat="item in items">
+      <span>{{item.title}}</span>
+	  <input ng-model='item.quantity' />
+	  <span>{{item.price | currency}}</span>
+	  <span>{{item.price*item.quantity | currency}}</span>
+	  <button ng-click="remove($index)">剔除</button>
+  </div>
+  <script>
+    function CartController($scope){
+	   $scope.items =[{title:'程序员的自我修养',
+	   quantity : 8,
+	   price:3.5
+	   },{title:'java高级编程',
+	   quantity:9,
+	     price: 4
+	   
+	   },{
+	   title:'Node.js高级编程',
+	   quantity:9,
+	     price: 4
+	   
+	   }      ];
+	     $scope.remove = function(index){
+		 $scope.items.splice(index,1);
+		 };
+
+
+	}
+  </script>
