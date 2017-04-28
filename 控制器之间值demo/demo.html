@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="demoForNotify">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controller.js"></script>
+    <!--
+    从子控制器传到父控制器(使用$emit)，从父控制器传到子控制器($broadcast）
+    -->
+</head>
+<body>
+  <div ng-controller="parentCtrl">
+      <div ng-controller="childCtrl">
+          child 1 name:
+          <input ng-model="name" type="text" ng-change="change(name)">
+      </div>
+      <div ng-controller="childCtrl2">
+          child 2 name:
+          <input ng-model="child2Name" />
+      </div>
+  </div>
+<div ng-controller="parentBrotherCtrl">
+    <div ng-controller="brotherChildCtrl">
+        brotherChild 1 name:
+          <input ng-model="name" type="text" ng-change="change(name);" />
+    </div>
+    <div ng-controller="brotherChildCtrl2">
+        brotherChild 2 name:
+        <input ng-model="brotherName2" />
+    </div>
+</div>
+</body>
+</html>
