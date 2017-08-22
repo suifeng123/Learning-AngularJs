@@ -1881,6 +1881,7 @@ function angularInit(element, bootstrap) {
  * @returns {auto.$injector} Returns the newly created injector for this app.
  */
 function bootstrap(element, modules, config) {
+  
   if (!isObject(config)) config = {};
   var defaultConfig = {
     strictDi: false
@@ -1914,6 +1915,7 @@ function bootstrap(element, modules, config) {
     var injector = createInjector(modules, config.strictDi);
     injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector',
        function bootstrapApply(scope, element, compile, injector) {
+        console.log("this is bootstrapApply");
         scope.$apply(function() {
           element.data('$injector', injector);
           compile(element)(scope);
@@ -3139,6 +3141,7 @@ function jqLiteBuildFragment(html, context) {
 }
 
 function jqLiteParseHTML(html, context) {
+
   context = context || window.document;
   var parsed;
 
@@ -3426,6 +3429,7 @@ function jqLiteDocumentLoaded(action, win) {
 
 function jqLiteReady(fn) {
   function trigger() {
+   
     window.document.removeEventListener('DOMContentLoaded', trigger);
     window.removeEventListener('load', trigger);
     fn();
@@ -4987,6 +4991,7 @@ function createInjector(modulesToLoad, strictDi) {
     }
 
     function invoke(fn, self, locals, serviceName) {
+     
       if (typeof locals === 'string') {
         serviceName = locals;
         locals = null;
@@ -17936,7 +17941,8 @@ function $RootScopeProvider() {
        * ```
        *
        */
-      $digest: function() {
+      $digest: 
+      function() {
         var watch, value, last, fn, get,
             watchers,
             dirty, ttl = TTL,
@@ -18256,6 +18262,7 @@ function $RootScopeProvider() {
        */
       $apply: function(expr) {
         try {
+          console.log(expr);
           console.log("检测信息变化");
           beginPhase('$apply');
           try {
@@ -18427,7 +18434,8 @@ function $RootScopeProvider() {
         } while (scope);
 
         event.currentScope = null;
-
+        console.log('返回监控的事件');
+        console.log(event);
         return event;
       },
 
@@ -18453,7 +18461,8 @@ function $RootScopeProvider() {
        * @param {...*} args Optional one or more arguments which will be passed onto the event listeners.
        * @return {Object} Event object, see {@link ng.$rootScope.Scope#$on}
        */
-      $broadcast: function(name, args) {
+      $broadcast:
+      function(name, args) {
         var target = this,
             current = target,
             next = target,
@@ -18504,6 +18513,8 @@ function $RootScopeProvider() {
         }
 
         event.currentScope = null;
+        console.log("展示变化");
+        console.log(event);
         return event;
       }
     };

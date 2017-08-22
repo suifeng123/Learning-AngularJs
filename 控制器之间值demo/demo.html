@@ -8,14 +8,15 @@
     angular.module("demoForNotify",[]);
    </script>
    <script src="js/app.js"></script>  
-    <!--
-    从子控制器传到父控制器(使用$emit)，从父控制器传到子控制器($broadcast）
-    -->
 </head>
 <body>
   <div ng-controller="parentCtrl">
     <input ng-model="message">  
     <span>{{message}}</span>
+    <a ng-click="click()">点击链接渲染事件</a>
+    <div ng-controller="childCtrl">
+       <span>{{message}}</span>
+    </div>
       
   </div>
   
