@@ -18358,7 +18358,9 @@ function $RootScopeProvider() {
         var self = this;
         return function() {
           var indexOfListener = namedListeners.indexOf(listener);
+          console.log("4444");
           if (indexOfListener !== -1) {
+            console.log('this is $on function');
             namedListeners[indexOfListener] = null;
             decrementListenerCount(self, 1, name);
           }
@@ -18513,7 +18515,7 @@ function $RootScopeProvider() {
         }
 
         event.currentScope = null;
-        console.log("展示变化");
+        console.log("展示变化,this $broadcast function");
         console.log(event);
         return event;
       }
