@@ -5,13 +5,61 @@
     <title>Title</title>
     <script src="lib/angular.js"></script>
    <script type="text/javascript">
-    angular.module("demoForNotify",[]);
+angular.module('demoForNotify',[])
+  .factory('logService',function(){
+    var messageCount = 0;
+    return {
+      log: function(msg){
+        console.log("LOG"+messageCount++ +")" + msg);
+      }
+    }
+  })
+
+.directive('unorderedList',function(){
+ 
+ return {
+  link: function(scope,element,attrs){
+    scope.data = scope[attrs['unorderedList']];
+  },
+  restrict: 'A',
+  template: "<ul><li ng-repeat='item in data'>"+"{{item.price | currency}}</li></ul>"
+ }
+})
+  .controller('defaultCtrl',function($rootScope,$scope){
+    console.log("展示");
+    console.log($scope);
+    $scope.products = [
+   {name:'Apples',category:'Fruit',price:1.20,expiry:10},
+   {name:'Apples',category:'Fruit',price:1.20,expiry:10},
+   {name:'Pears',category:'Fruit',price:1.20,expiry:10},
+    ];
+    $scope.items = [
+ 'red',
+ 'blue',
+ 'yellow',
+ 'white',
+ 'blue'
+];
+$scope.data = {
+  totalClick: 0
+};
+$scope.go = function(){
+  console.log(Math.max(1,2,3));
+}
+
+console.log(Math.max(1,2,3));
+  })
+  //sadfsadfdsa
    </script>
-   <script src="js/app.js"></script>  
+   
 </head>
 <body ng-controller="defaultCtrl">
   <div unordered-list="products" list-property="price | currency">
   </div>
+  <li ng-repeat="item in items track by $index">{{item}}</li>
+  <button ng-click="go()">点击</button>
+  <p>{{parseInt(55.66)}}</p>
+
   
 </body>
 </html>
