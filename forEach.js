@@ -174,3 +174,19 @@ function copy(source,desitination){
 	}
 }
 
+function toJsonReplacer(key,value){
+
+}
+
+function startingTag(element){
+
+}
+
+function angularInit(element,bootstrap){
+	var elements = [element];
+	var appElement,module,
+	names = ['ng:app','ng-app','x-ng-app','data-ng-app'],
+	NG_APP_CLASS_REGEXP = /\sng[:\-]app(:\s*([\w\d_]+);?)?\s/;
+	
+}
+
