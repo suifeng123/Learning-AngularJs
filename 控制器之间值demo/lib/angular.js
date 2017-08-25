@@ -3,35 +3,10 @@
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window, document, undefined) {'use strict';
+(
+function(window, document, undefined) 
+{'use strict';
 
-/**
- * @description
- *
- * This object provides a utility for producing rich Error messages within
- * Angular. It can be called as follows:
- *
- * var exampleMinErr = minErr('example');
- * throw exampleMinErr('one', 'This {0} is {1}', foo, bar);
- *
- * The above creates an instance of minErr in the example namespace. The
- * resulting error will have a namespaced error code of example.one.  The
- * resulting error will replace {0} with the value of foo, and {1} with the
- * value of bar. The object is not restricted in the number of arguments it can
- * take.
- *
- * If fewer arguments are specified than necessary for interpolation, the extra
- * interpolation markers will be preserved in the final string.
- *
- * Since data will be parsed statically during a build step, some restrictions
- * are applied with respect to how minErr instances are created and called.
- * Instances should have names of the form namespaceMinErr for a minErr created
- * using minErr('namespace') . Error codes, namespaces and template strings
- * should all be static strings, not variables or general expressions.
- *
- * @param {string} module The namespace to use for the new minErr instance.
- * @returns {function(string, string, ...): Error} instance
- */
 
 function minErr(module) {
   return function () {
@@ -39,6 +14,10 @@ function minErr(module) {
       template = arguments[1],
       templateArgs = arguments,
       message;
+      console.log("sasa");
+    console.log(prefix);
+    console.log(template);
+    console.log(templateArgs);
 
     message = prefix + template.replace(/\{\d+\}/g, function (match) {
       var index = +match.slice(1, -1), arg;
@@ -56,6 +35,7 @@ function minErr(module) {
       }
       return match;
     });
+    console.log(message);
 
     return new Error(message);
   };
@@ -1302,7 +1282,7 @@ function setupModuleLoader(window) {
         }
 
         /** @type {!Array.<Array.<*>>} */
-        var invokeQueue = [];
+        var invokeQueue = [];  //定义一个数组
 
         /** @type {!Array.<Function>} */
         var runBlocks = [];
@@ -8781,6 +8761,7 @@ function getterFn(path, csp, fullExp) {
  *
  */
 function $ParseProvider() {
+  console.log('相应变量进行转化');
   var cache = {};
   this.$get = ['$filter', '$sniffer', function($filter, $sniffer) {
     return function(exp) {
